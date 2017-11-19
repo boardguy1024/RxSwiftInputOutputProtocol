@@ -112,8 +112,8 @@
 		A24626BC1FC18AE4007107C3 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				A24626B61FC18763007107C3 /* SignUpViewController.swift */,
 				A24626A61FC183A7007107C3 /* ViewController.swift */,
+				A24626B61FC18763007107C3 /* SignUpViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
