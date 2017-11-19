@@ -13,10 +13,15 @@ protocol SignUpViewModelInput {
     func viewDidLoad()
     func viewWillAppear(_ animated: Bool)
     func closeButtonTapped()
+    func inputEmail(with text: String)
+    func inputPassword(with text: String)
+    func signUpButtonTapped()
 }
 
 protocol SignUpViewModelOutput {
     var closeViewController: Observable<Void> { get }
+    var enableSignUpButton: Observable<Bool> { get }
+    var showSignUpCompletedView: Observable<Void> { get }
 }
 
 protocol SignUpViewModelType {
@@ -31,11 +36,9 @@ class SignUpViewModel: SignUpViewModelInput, SignUpViewModelOutput, SignUpViewMo
     //-------------------------------------
     //MARK: - Input
     func viewDidLoad() {
-        
     }
     
     func viewWillAppear(_ animated: Bool) {
-        
     }
 
     private var closeButtonTappedProperty = Variable<Void>(())
@@ -43,12 +46,38 @@ class SignUpViewModel: SignUpViewModelInput, SignUpViewModelOutput, SignUpViewMo
         closeButtonTappedProperty.value = ()
     }
     
+    private var inputEmailProperty = Variable<String>("")
+    func inputEmail(with text: String) {
+        inputEmailProperty.value = text
+    }
+    
+    private var inputPasswordProperty = Variable<String>("")
+    func inputPassword(with text: String) {
+        inputPasswordProperty.value = text
+    }
+    
+    private var signUpButtonTappedProperty = Variable<Void>(())
+    func signUpButtonTapped() {
+        signUpButtonTappedProperty.value = ()
+    }
+    
+    
     //-------------------------------------
     //MARK: - Output
     private var closeViewControllerProperty = Variable<Void>(())
     // VC側で購読しているOberverに「closeViewControllerPropertyのイベントを放出」
     var closeViewController: Observable<Void> {
         return closeViewControllerProperty.asObservable().skip(1)
+    }
+    
+    private var enableSignUpButtonProperty = Variable<Bool>(false)
+    var enableSignUpButton: Observable<Bool> {
+        return enableSignUpButtonProperty.asObservable()
+    }
+    
+    private var showSignUpCompletedViewProperty = Variable<Void>(())
+    var showSignUpCompletedView: Observable<Void> {
+        return showSignUpCompletedViewProperty.asObservable().skip(1)
     }
     
     //-------------------------------------
@@ -71,6 +100,31 @@ class SignUpViewModel: SignUpViewModelInput, SignUpViewModelOutput, SignUpViewMo
             .disposed(by: bag)
         
         
+        inputEmailProperty.asObservable()
+            .subscribe(onNext: { email in
+                print("emitted inputEmailProperty : \(email)")
+                //なんらかのバリデーションをする
+            })
+            .disposed(by: bag)
+        
+        inputPasswordProperty.asObservable()
+            .subscribe(onNext: { [unowned self] password in
+                print("emitted inputPasswordProperty : \(password)")
+                
+                self.enableSignUpButtonProperty.value = password.count > 7 ? true : false
+            })
+            .disposed(by: bag)
+        
+        
+        // signUpボタンがタップのinputがあった場合にはOutのshowCompletedにイベントを放出する
+        signUpButtonTappedProperty.asObservable()
+            .subscribe(onNext: { _ in
+                print("emitted signUpButtonTappedProperty")
+                //なんらかのバリデーションがあればする
+                
+                self.showSignUpCompletedViewProperty.value = ()
+            })
+            .disposed(by: bag)
     }
     
     

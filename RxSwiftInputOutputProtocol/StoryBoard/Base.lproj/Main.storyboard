@@ -85,19 +85,19 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="xg8-Fd-Myn">
                                             <rect key="frame" x="16" y="267" width="343" height="132"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jSh-Dj-Y88">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jSh-Dj-Y88">
                                                     <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tf5-69-e1E">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tf5-69-e1E">
                                                     <rect key="frame" x="0.0" y="41" width="343" height="30"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vFQ-Le-D1E">
                                                     <rect key="frame" x="0.0" y="82" width="343" height="50"/>
@@ -145,6 +145,9 @@
                     <connections>
                         <outlet property="blurEffectView" destination="jVA-cU-1p9" id="UBX-bk-kpf"/>
                         <outlet property="closeButton" destination="ZVP-Hz-r9t" id="oLv-7c-swS"/>
+                        <outlet property="emailTextField" destination="jSh-Dj-Y88" id="7dX-ce-YkZ"/>
+                        <outlet property="passwordTextField" destination="Tf5-69-e1E" id="COi-4M-9qG"/>
+                        <outlet property="signUpButton" destination="vFQ-Le-D1E" id="hBH-ER-bIX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rhH-fy-3jP" userLabel="First Responder" sceneMemberID="firstResponder"/>
