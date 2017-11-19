@@ -1,0 +1,6 @@
+framework module Pods_RxSwiftInputOutputProtocol {
+  umbrella header "Pods-RxSwiftInputOutputProtocol-umbrella.h"
+
+  export *
+  module * { export * }
+}
